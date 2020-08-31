@@ -65,11 +65,11 @@ class NeuralNetwork(object):
         '''
         #### Implement the forward pass here ####
         ### Forward pass ###
-        # TODO: Hidden layer - Replace these values with your calculations.
+        # Hidden layer - Replace these values with your calculations.
         hidden_inputs = np.dot(X, self.weights_input_to_hidden) # signals into hidden layer
         hidden_outputs = self.activation_function(hidden_inputs) # signals from hidden layer
 
-        # TODO: Output layer - Replace these values with your calculations.
+        # Output layer - Replace these values with your calculations.
         final_inputs = np.dot(hidden_outputs, self.weights_hidden_to_output) # signals into final output layer
         #final_outputs = self.activation_function(final_inputs) # signals from final output layer
         final_outputs = final_inputs # don't need to activation because de outupt will be used for regression
@@ -119,8 +119,11 @@ class NeuralNetwork(object):
             n_records: number of records
 
         '''
-        self.weights_hidden_to_output += (self.lr * delta_weights_h_o) / n_records # update hidden-to-output weights with gradient descent step
-        self.weights_input_to_hidden += (self.lr * delta_weights_i_h) / n_records # update input-to-hidden weights with gradient descent step
+        # update hidden-to-output weights with gradient descent step
+        self.weights_hidden_to_output += (self.lr * delta_weights_h_o) / n_records
+        
+        # update input-to-hidden weights with gradient descent step
+        self.weights_input_to_hidden += (self.lr * delta_weights_i_h) / n_records 
 
     def run(self, features):
         ''' Run a forward pass through the network with input features 
@@ -129,7 +132,7 @@ class NeuralNetwork(object):
             ---------
             features: 1D array of feature values
         '''
-        #### forward pass here ####       
+        #### forward pass ####       
         hidden_inputs = np.dot(features, self.weights_input_to_hidden) # signals into hidden layer
         hidden_outputs = self.activation_function(hidden_inputs) # signals from hidden layer
 
@@ -141,7 +144,7 @@ class NeuralNetwork(object):
 
 
 #########################################################
-# Set your hyperparameters here
+# Set my hyperparameters here
 ##########################################################
 #best it 400 and lr 1
 iterations = 2000
